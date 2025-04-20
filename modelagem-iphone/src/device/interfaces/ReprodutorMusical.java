@@ -1,7 +1,7 @@
 package device.interfaces;
 
 public interface ReprodutorMusical {   
-    void startReproducao();
+    void startStopReproducao();
     void aumentaVolume();
     void diminuirVolume();
 }

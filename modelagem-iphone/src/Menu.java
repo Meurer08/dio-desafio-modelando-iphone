@@ -1,5 +1,9 @@
+import device.interfaces.ReprodutorMusical;
 import device.iphone.Iphone;
 import device.utils.BrowserUtils;
+import device.utils.PhoneUtils;
+import device.utils.ReprodutorMusicalUtils;
+
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -20,25 +24,21 @@ public class Menu {
     		System.out.println("0 - Sair");
     		System.out.println("--------------------------");
     		comando = scanner.nextInt();
-			scanner.nextLine();
-			System.out.println("--------------------------");
+        scanner.nextLine();
+        System.out.println("--------------------------");
 			
-            switch (comando) {
+      switch (comando) {
 				case 0:
 					break;
 				case 1:
 					BrowserUtils.options(iphone);
 					break;
 				case 2:
-					// aplicar novas logicas
-						System.out.println("---------Telefone---------");
-						System.out.println("Digite uma opção:");
-						System.out.println("1 - Fazer Ligação");
-						System.out.println("0 - Sair");
+					PhoneUtils.options(iphone);
 					scanner.nextLine();
 					break;
 				case 3:
-					// aplicar novas logicas
+					ReprodutorMusicalUtils.options(iphone);
 					scanner.nextLine();
 					break;
 				default:

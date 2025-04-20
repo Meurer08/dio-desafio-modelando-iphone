@@ -9,33 +9,48 @@ import java.util.Scanner;
 
 public class Iphone implements ReprodutorMusical, Browser, Phone {
     private boolean reproduzindoMusica = false;
+    private boolean voltarMusica = false;
     private int volumeMusica = 5;
     private boolean emChamada = false;
     private List<String> listaChamada = new ArrayList<>();
-    private List<String> listaTelefonica = new ArrayList<>();
+    private static List<String> listaTelefonica = new ArrayList<>();
 
+  /// Exemplo em lista telefonica
+  //  public Iphone () {
+  //  listaTelefonica.add("40028922");
+  //}
 
     @Override
-    public void startReproducao() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'startReproducao'");
+    public void startStopReproducao() {
+        if (reproduzindoMusica == false && emChamada == true) {
+          System.out.println("Não pode reproduzir estando em chamada");
+        } else if (this.reproduzindoMusica == false) {
+          this.reproduzindoMusica = true;
+          System.out.println("Reproduzindo Música");
+        } else {
+          this.reproduzindoMusica = false;
+          System.out.println("Música Pausada");
+        }
     }
 
     @Override
     public void aumentaVolume() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'aumentaVolume'");
+        this.volumeMusica += 1;
+        System.out.println("Volume: "+ this.volumeMusica);
     }
 
     @Override
     public void diminuirVolume() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'diminuirVolume'");
+      this.volumeMusica -= 1;
+      System.out.println("Volume: "+ this.volumeMusica);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void iniciarChamada(String numero) {
+        if (reproduzindoMusica == true) {
+          reproduzindoMusica = false;
+          voltarMusica = true;
+        }
         this.emChamada = true;
         this.listaChamada.add(numero);
         System.out.println("Chamada Iniciada com " + numero);
@@ -57,6 +72,10 @@ public class Iphone implements ReprodutorMusical, Browser, Phone {
         System.out.println("Chamada Finalizada");
         if (listaChamada.isEmpty()) {
             this.emChamada = false;
+            if (this.voltarMusica == true) {
+              reproduzindoMusica = true;
+            }
+
         }
     }
 
